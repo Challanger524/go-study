@@ -2,13 +2,26 @@ package main
 
 import (
 	"fmt"
-
-	"rsc.io/quote"
 )
 
+// Strings, bytes, runes and characters in Go:
+// https://go.dev/blog/strings
 func main() {
-	fmt.Println("Hello World!", "Golang goes to the Clip 😄")
+	const sample = "\xbd\xb2\x3d\xbc\x20\xe2\x8c\x98"
 
-	fmt.Print("QUOTE: ")
-	fmt.Println(quote.Go())
+	fmt.Println(sample)
+	fmt.Printf("% x\n", sample)
+	for i := 0; i < len(sample); i++ {
+		fmt.Printf("%x ", sample[i])
+	}
+
+	fmt.Println()
+	fmt.Printf("%q\n", sample)
+	fmt.Printf("%+q\n", sample)
+
+	fmt.Println("\nRange for loop reveals the `runes`:")
+	const nihongo = "日本語"
+	for idx, runeval := range nihongo {
+		fmt.Printf("Rune at byte pos [%02d]: %#U\n", idx, runeval)
+	}
 }
